@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cloud Monitoring Dashboard</title>
+    <!-- Include Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: #f0f0f0;
+      }
+      .container {
+          max-width: 800px;
+          margin: 20px auto;
+          padding: 20px;
+          background-color: #ffffff;
+          border-radius: 8px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+          text-align: center;
+      }
+      .chart-container {
+          margin-top: 20px;
+          text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Cloud Monitoring Dashboard</h1>
+      <div class="metrics">
+        <h2>CPU Usage: <span id="cpuValue">...</span>%</h2>
+        <h2>Memory Usage: <span id="memValue">...</span>%</h2>
+      </div>
+      <div class="chart-container">
+        <canvas id="cpuChart" width="400" height="200"></canvas>
+      </div>
+      <div class="chart-container">
+        <canvas id="memChart" width="400" height="200"></canvas>
+      </div>
+    </div>
+
+    <script>
+      // Dummy data for CPU and memory metrics
+      var cpuValue = Math.floor(Math.random() * 101); // Random CPU value between 0 and 100
+      var memValue = Math.floor(Math.random() * 101); // Random memory value between 0 and 100
+
+      // Update CPU and memory values in the HTML
+      document.getElementById('cpuValue').textContent = cpuValue;
+      document.getElementById('memValue').textContent = memValue;
+
+      // CPU Chart
+      var cpuChartCtx = document.getElementById('cpuChart').getContext('2d');
+      var cpuChart = new Chart(cpuChartCtx, {
+          type: 'doughnut',
+          data: {
+              labels: ['Used', 'Unused'],
+              datasets: [{
+                  data: [cpuValue, 100 - cpuValue],
+                  backgroundColor: ['#36a2eb', '#eaeaea']
+              }]
+          },
+          options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              title: {
+                  display: true,
+                  text: 'CPU Usage'
+              }
+          }
+      });
+
+      // Memory Chart
+      var memChartCtx = document.getElementById('memChart').getContext('2d');
+      var memChart = new Chart(memChartCtx, {
+          type: 'doughnut',
+          data: {
+              labels: ['Used', 'Unused'],
+              datasets: [{
+                  data: [memValue, 100 - memValue],
+                  backgroundColor: ['#ff6384', '#eaeaea']
+              }]
+          },
+          options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              title: {
+                  display: true,
+                  text: 'Memory Usage'
+              }
+          }
+      });
+    </script>
+  </body>
+</html>
