@@ -1,4 +1,4 @@
-# Cloud-native-monitoring-app
+# Deploy an Cloud-native-monitoring-app on Amazon Elastic Kubernetes Service
 
 ## Overview
 This repository contains a simple Python application that monitors CPU and memory usage and displays the metrics through a web interface. The application is containerized using Docker and can be deployed to Amazon EKS (Elastic Kubernetes Service).
